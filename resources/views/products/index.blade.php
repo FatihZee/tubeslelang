@@ -17,7 +17,7 @@
 
         <!-- Add Export PDF Button -->
         @if (Auth::user()->role === 'admin')
-            <a href="{{ route('products.export-pdf') }}" class="btn btn-secondary mb-3">Export to PDF</a>
+            <a href="{{ route('products.export-pdf') }}" class="btn btn-danger mb-3">Export to PDF</a>
         @endif
 
         <div class="table-responsive">
@@ -49,7 +49,7 @@
                             <td>${{ number_format($product->price, 2) }}</td>
                             <td>{{ $product->stock }}</td>
                             <td>
-                                <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm">View</a>
+                                <a href="{{ route('products.show', $product->id) }}" class="btn btn-success btn-sm">View</a>
                                 <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <!-- Delete Form -->
                                 <form action="{{ route('products.destroy', $product->id) }}" method="POST" class="d-inline">
