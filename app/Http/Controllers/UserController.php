@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class UserController extends Controller
 {
@@ -93,5 +94,14 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+    }
+
+    public function exportPdf()
+    {
+        $users = User::all(); // Mengambil semua data users
+
+        $pdf = Pdf::loadView('users.export-pdf', compact('users'));
+
+        return $pdf->download('users-list.pdf');
     }
 }

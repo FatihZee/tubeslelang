@@ -7,6 +7,11 @@
         <!-- Button to Create New User -->
         <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Create User</a>
 
+        <!-- Button to Export PDF -->
+        @if (Auth::user()->role === 'admin')
+            <a href="{{ route('users.exportPdf') }}" class="btn btn-secondary mb-3">Export to PDF</a>
+        @endif
+
         <!-- User Table -->
         <div class="table-responsive">
             <table class="table table-bordered ">
