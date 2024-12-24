@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Feedback;
+use Barryvdh\DomPDF\PDF;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
@@ -76,5 +77,13 @@ class FeedbackController extends Controller
     {
         $feedback = Feedback::with(['user', 'transaction'])->findOrFail($id);
         return view('feedbacks.show', compact('feedback'));
+    }
+
+    public function exportPdf()
+    {
+        $feedbacks = Feedback::with(['user', 'transaction'])->get();
+        $pdf = app(PDF::class);
+        $pdf->loadView('feedbacks.export-pdf', compact('feedbacks'));
+        return $pdf->download('feedbacks-list.pdf');
     }
 }
