@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bid;
 use App\Models\User;
 use App\Models\Auction;
+use Barryvdh\DomPDF\PDF;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
@@ -95,5 +96,14 @@ class TransactionController extends Controller
         $transaction->delete();
 
         return redirect()->route('transactions.index')->with('success', 'Transaction deleted successfully.');
+    }
+
+    //exportPdf
+    public function exportPdf()
+    {
+        $transactions = Transaction::with(['user', 'bid'])->get();
+        $pdf = app(PDF::class);
+        $pdf->loadView('transactions.export-pdf', compact('transactions'));
+        return $pdf->download('transactions.pdf');
     }
 }
