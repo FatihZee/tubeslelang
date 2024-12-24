@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bid;
 use App\Models\User;
 use App\Models\Auction;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -104,5 +105,31 @@ class BidController extends Controller
         return redirect()->route('bids.index', $auctionId)->with('success', 'Bid deleted successfully.');
     }
 
-    
+    public function exportPdf($auctionId)
+    {
+        $user = Auth::user();
+        $auction = Auction::with(['product', 'admin', 'winner'])->findOrFail($auctionId);
+
+        // Ambil bids yang terkait dengan auction ini
+        if ($user->role === 'admin') {
+            // Admin bisa melihat semua bid untuk auction ini
+            $bids = Bid::where('auction_id', $auctionId)
+                    ->with('user') // Memastikan bid memiliki relasi dengan User
+                    ->orderBy('bid_price', 'desc')
+                    ->get();
+        } else {
+            // Member hanya bisa melihat bid yang mereka buat
+            $bids = Bid::where('auction_id', $auctionId)
+                    ->where('user_id', auth()->user()->id_user) // Hanya mengambil bid milik user yang login
+                    ->with('user') // Memastikan bid memiliki relasi dengan User
+                    ->orderBy('bid_price', 'desc')
+                    ->get();
+        }
+
+        // Generate PDF
+        $pdf = app(PDF::class);
+        $pdf->loadView('bids.export-pdf', compact('auction', 'bids'));
+        return $pdf->download('auction-report.pdf');
+    }
+
 }
