@@ -6,6 +6,12 @@
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
+
+    <!-- Add Export PDF Button -->
+    @if (Auth::user()->role === 'admin')
+        <a href="{{ route('feedbacks.export-pdf') }}" class="btn btn-secondary mb-3">Export to PDF</a>
+    @endif
+    
     <table class="table table-bordered">
         <thead>
             <tr>

@@ -8,4 +8,4 @@
     <p><strong>Feedback:</strong></p>
     <p>{{ $feedback->feedback }}</p>
 </div>
-@endsection 
+@endsection
