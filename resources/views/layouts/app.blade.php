@@ -61,7 +61,10 @@
                         </li>
                         <!-- Tambahan Menu Transactions -->
                         <li class="nav-item mb-2">
-                            <a href="{{ route('transactions.index') }}" class="nav-link text-dark"><i class="bi bi-currency-exchange"></i> Transactions</a>
+                            <a href="{{ route('transactions.index') }}" class="nav-link text-dark"><i class="bi bi-cash"></i> Transactions</a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a href="{{ route('feedbacks.index') }}" class="nav-link text-dark"><i class="bi bi-chat"></i> Feedbacks</a>
                         </li>
                     </ul>
                 </div>
