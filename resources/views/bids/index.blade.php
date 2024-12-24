@@ -10,6 +10,12 @@
     <a href="{{ route('bids.create', $auction->id) }}" class="btn btn-primary mb-3">Place New Bid</a>
     <a href="{{ route('auctions.index', $auction->id) }}" class="btn btn-secondary mb-3">Back</a>
 
+    <!-- Add Export PDF Button -->
+    @if (Auth::user()->role === 'admin' || Auth::check())
+        <a href="{{ route('bids.export-pdf', ['auction' => $auction->id]) }}" class="btn btn-secondary mb-3">Export to PDF</a>
+    @endif
+
+
     @if ($bids->isEmpty())
         <p>No bids yet. Place your first bid now!</p>
     @else
