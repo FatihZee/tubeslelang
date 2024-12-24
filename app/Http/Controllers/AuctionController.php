@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Auction;
 use App\Models\Product;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 
 class AuctionController extends Controller
@@ -92,5 +93,13 @@ class AuctionController extends Controller
         }
 
         return redirect()->route('auctions.index')->with('error', 'No bids placed in this auction.');
+    }
+    
+    public function exportPdf()
+    {
+        $auctions = Auction::with('product', 'admin', 'winner')->get();
+        $pdf = app(PDF::class);
+        $pdf->loadView('auctions.export-pdf', compact('auctions'));
+        return $pdf->download('auctions-list.pdf');
     }
 }

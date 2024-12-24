@@ -9,6 +9,11 @@
             <a href="{{ route('auctions.create') }}" class="btn btn-primary mb-3">Create Auction</a>
         @endif
 
+        <!-- Button to Export PDF (Only for Admin) -->
+        @if (auth()->user()->role === 'admin')
+            <a href="{{ route('auctions.export-pdf') }}" class="btn btn-secondary mb-3">Export to PDF</a>
+        @endif
+
         <!-- Auction Table -->
         <div class="table-responsive">
             <table class="table table-bordered">
