@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -84,5 +85,15 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
+    }
+    
+    public function exportPdf()
+    {
+        $products = Product::all();
+        
+        $pdf = app(PDF::class);
+        $pdf->loadView('products.export-pdf', compact('products'));
+        
+        return $pdf->download('products-list.pdf');
     }
 }

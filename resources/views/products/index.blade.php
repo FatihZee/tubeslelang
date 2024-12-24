@@ -15,6 +15,11 @@
         <!-- Add Create Product Button -->
         <a href="{{ route('products.create') }}" class="btn btn-primary mb-3">Create Product</a>
 
+        <!-- Add Export PDF Button -->
+        @if (Auth::user()->role === 'admin')
+            <a href="{{ route('products.export-pdf') }}" class="btn btn-secondary mb-3">Export to PDF</a>
+        @endif
+
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead class="table-primary">
