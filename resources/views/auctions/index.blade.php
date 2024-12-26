@@ -90,8 +90,9 @@
                                                                 @if(!$transaction)
                                                                     <a href="{{ route('transactions.create') }}" class="btn btn-success btn-sm text-white">Bayar Sekarang</a>
                                                                 @else
-                                                                    @if($transaction->status === 'confirmed')
-                                                                        <a href="{{ route('feedbacks.create', $transaction->id) }}" class="btn btn-primary btn-sm text-white">Berikan Feedback</a>
+                                                                @if($transaction->status === 'confirmed')
+                                                                    <span class="badge bg-info text-white">Payment Confirmed</span>
+                                                                    <a href="{{ route('feedbacks.create', $transaction->id) }}" class="btn btn-primary btn-sm text-white ms-2 feedback-button" data-transaction-id="{{ $transaction->id }}">Berikan Feedback</a>
                                                                     @else
                                                                         <span class="badge bg-info text-white">Payment {{ ucfirst($transaction->status) }}</span>
                                                                     @endif
@@ -181,4 +182,24 @@ table th {
     border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const feedbackButtons = document.querySelectorAll('.feedback-button');
+
+        feedbackButtons.forEach(button => {
+            const transactionId = button.getAttribute('data-transaction-id');
+            
+            // Cek Local Storage
+            if (localStorage.getItem(`feedbackClicked_${transactionId}`)) {
+                button.style.display = 'none';
+            }
+
+            // Event Listener klik
+            button.addEventListener('click', () => {
+                localStorage.setItem(`feedbackClicked_${transactionId}`, true);
+            });
+        });
+    });
+</script>
 @endsection
