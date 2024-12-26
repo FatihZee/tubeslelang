@@ -9,9 +9,19 @@
         <a href="{{ route('transactions.export-pdf') }}" class="btn btn-secondary mb-3">Export to PDF</a>
     @endif
 
+    <div class="mb-3">
+        <label for="showEntries" class="form-label">Show</label>
+        <select id="showEntries" class="form-select" onchange="location = this.value;">
+            <option value="{{ route('transactions.index', ['perPage' => 10]) }}" {{ request('perPage') == 10 ? 'selected' : '' }}>10</option>
+            <option value="{{ route('transactions.index', ['perPage' => 25]) }}" {{ request('perPage') == 25 ? 'selected' : '' }}>25</option>
+            <option value="{{ route('transactions.index', ['perPage' => 50]) }}" {{ request('perPage') == 50 ? 'selected' : '' }}>50</option>
+            <option value="{{ route('transactions.index', ['perPage' => 100]) }}" {{ request('perPage') == 100 ? 'selected' : '' }}>100</option>
+        </select>
+    </div>
+
     <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered">
-        <thead style="background-color:rgb(47, 105, 192); color: white;">
+            <thead style="background-color:rgb(47, 105, 192); color: white;">
                 <tr>
                     <th>ID</th>
                     <th>User</th>
