@@ -37,7 +37,23 @@ class TransactionController extends Controller
         return view('transactions.index', compact('transactions'));
     }
 
-    
+    public function create()
+    {
+        $userId = auth()->user()->id_user;
+
+        $bids = Bid::whereHas('auction', function ($query) {
+                    $query->where('status', 'completed');
+                })
+                ->where('user_id', $userId)
+                ->whereDoesntHave('transaction', function ($query) {
+                    $query->where('status', '!=', 'pending');
+                })
+                ->with(['auction.product'])
+                ->orderBy('bid_price', 'desc')
+                ->get();
+
+        return view('transactions.create', compact('bids'));
+    }
 
     public function store(Request $request)
     {
