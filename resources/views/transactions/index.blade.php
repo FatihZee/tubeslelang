@@ -10,7 +10,7 @@
     @endif
 
     <div class="mb-3">
-        <label for="showEntries" class="form-label">Show</label>
+        <label for="showEntries" class="form-label">Show Entries</label>
         <select id="showEntries" class="form-select" onchange="location = this.value;">
             <option value="{{ route('transactions.index', ['perPage' => 10]) }}" {{ request('perPage') == 10 ? 'selected' : '' }}>10</option>
             <option value="{{ route('transactions.index', ['perPage' => 25]) }}" {{ request('perPage') == 25 ? 'selected' : '' }}>25</option>
