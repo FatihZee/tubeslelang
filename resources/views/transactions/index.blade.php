@@ -18,6 +18,13 @@
             <option value="{{ route('transactions.index', ['perPage' => 100]) }}" {{ request('perPage') == 100 ? 'selected' : '' }}>100</option>
         </select>
     </div>
+    
+    <form action="{{ route('transactions.index') }}" method="GET">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Search transactions" value="{{ request('search') }}">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
 
     <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered">
@@ -57,5 +64,7 @@
             </tbody>
         </table>
     </div>
+
+    {{ $transactions->appends(request()->input())->links() }}
 </div>
 @endsection

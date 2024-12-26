@@ -11,29 +11,33 @@ use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $transactions = Transaction::with(['user', 'bid'])->get();
+        $query = Transaction::with(['user', 'bid']);
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%");
+            })->orWhereHas('bid', function ($q) use ($search) {
+                $q->where('id', 'like', "%{$search}%");
+            })->orWhere('id', 'like', "%{$search}%")
+              ->orWhere('nominal', 'like', "%{$search}%")
+              ->orWhere('status', 'like', "%{$search}%");
+        }
+
+        if ($request->has('perPage')) {
+            $perPage = $request->input('perPage');
+        } else {
+            $perPage = 10;
+        }
+
+        $transactions = $query->paginate($perPage);
+
         return view('transactions.index', compact('transactions'));
     }
 
-    public function create()
-    {
-        $userId = auth()->user()->id_user;
-
-        $bids = Bid::whereHas('auction', function ($query) {
-                    $query->where('status', 'completed');
-                })
-                ->where('user_id', $userId)
-                ->whereDoesntHave('transaction', function ($query) {
-                    $query->where('status', '!=', 'pending');
-                })
-                ->with(['auction.product'])
-                ->orderBy('bid_price', 'desc')
-                ->get();
-
-        return view('transactions.create', compact('bids'));
-    }
+    
 
     public function store(Request $request)
     {
@@ -106,4 +110,6 @@ class TransactionController extends Controller
         $pdf->loadView('transactions.export-pdf', compact('transactions'));
         return $pdf->download('transactions.pdf');
     }
+
+    
 }
