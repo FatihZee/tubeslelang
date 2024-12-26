@@ -11,7 +11,7 @@
 
     <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered">
-            <thead class="thead-dark">
+        <thead style="background-color:rgb(47, 105, 192); color: white;">
                 <tr>
                     <th>ID</th>
                     <th>User</th>
