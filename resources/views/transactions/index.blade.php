@@ -3,10 +3,10 @@
 @section('content')
 <div class="container mt-4">
     <h1>Transactions</h1>
-    <a href="{{ route('transactions.create') }}" class="btn btn-primary mb-3">Create Transaction</a>
+    <a href="{{ route('transactions.create') }}" class="btn btn-success mb-3">Create Transaction</a>
 
     @if (Auth::user()->role === 'admin')
-        <a href="{{ route('transactions.export-pdf') }}" class="btn btn-secondary mb-3">Export to PDF</a>
+        <a href="{{ route('transactions.export-pdf') }}" class="btn btn-danger mb-3">Export to PDF</a>
     @endif
 
     <div class="mb-3">
