@@ -11,8 +11,8 @@ use App\Http\Controllers\TransactionController;
 use App\Models\Product;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('dashboard');
+})->name('dashboard')->middleware('auth');
 
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
