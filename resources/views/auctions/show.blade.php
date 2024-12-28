@@ -46,16 +46,16 @@
                                 <!-- Action Buttons -->
                                 <div class="text-end mt-4">
                                     <a href="{{ route('auctions.index') }}" 
-                                       class="btn btn-light btn-sm me-2 px-4">Back</a>
+                                       class="btn rounded-pill btn-light btn-sm me-2 px-4">Back</a>
                                     <a href="{{ route('auctions.edit', $auction) }}" 
-                                       class="btn btn-primary btn-sm me-2 px-4">Edit</a>
+                                       class="btn btn-primary rounded-pill btn-sm me-2 px-4">Edit</a>
                                     <form action="{{ route('auctions.destroy', $auction) }}" 
                                           method="POST" 
                                           style="display:inline;" 
                                           onsubmit="return confirm('Are you sure you want to delete this auction?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm px-4">Delete</button>
+                                        <button type="submit" class="btn rounded-pill btn-danger btn-sm px-4">Delete</button>
                                     </form>
                                 </div>
 
@@ -65,7 +65,7 @@
                                         <div class="text-center mt-4">
                                             <form action="{{ route('auctions.selectWinner', $auction->id) }}" method="POST">
                                                 @csrf
-                                                <button type="submit" class="btn btn-success btn-sm px-4">Select Winner</button>
+                                                <button type="submit" class="btn rounded-pill btn-success btn-sm px-4">Select Winner</button>
                                             </form>
                                         </div>
                                     @elseif ($auction->winner_id)

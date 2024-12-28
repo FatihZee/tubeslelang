@@ -62,9 +62,9 @@
                                     <!-- Tombol Submit -->
                                     <div class="text-end mt-4">
                                         <a href="javascript:history.back()" 
-                                           class="btn btn-light btn-sm me-2 px-4">Back</a>
+                                           class="btn rounded-pill btn-light btn-sm me-2 px-4">Back</a>
                                         <button type="submit" 
-                                                class="btn btn-primary btn-sm px-4">Create Auction</button>
+                                                class="btn btn-primary rounded-pill btn-sm px-4">Create Auction</button>
                                     </div>
                                 </form>
                             </div>

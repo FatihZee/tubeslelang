@@ -14,8 +14,9 @@
                                 <!-- Admin Buttons -->
                                 @if (auth()->user()->role === 'admin')
                                     <div class="mb-3">
-                                        <a href="{{ route('auctions.create') }}" class="btn btn-primary me-2">Create Auction</a>
-                                        <a href="{{ route('auctions.export-pdf') }}" class="btn btn-secondary">Export to PDF</a>
+                                        <a href="{{ route('auctions.create') }}" class="btn btn-primary me-2 rounded-pill">Create Auction</a>
+                                        <a href="{{ route('auctions.export-pdf') }}" class="btn btn-secondary rounded-pill">Export to PDF</a>
+
                                     </div>
                                 @endif
 
@@ -61,24 +62,24 @@
                                                     <td class="text-white">
                                                         @if (auth()->user()->role === 'admin')
                                                             <div class="btn-group">
-                                                                <a href="{{ route('auctions.show', $auction) }}" class="btn btn-info btn-sm text-white">View</a>
-                                                                <a href="{{ route('auctions.edit', $auction) }}" class="btn btn-warning btn-sm text-white">Edit</a>
+                                                                <a href="{{ route('auctions.show', $auction) }}" class="btn rounded-pill btn-info btn-sm text-white">View</a>
+                                                                <a href="{{ route('auctions.edit', $auction) }}" class="btn rounded-pill btn-warning btn-sm text-white">Edit</a>
                                                                 <form action="{{ route('auctions.destroy', $auction) }}" method="POST" class="d-inline">
                                                                     @csrf
                                                                     @method('DELETE')
-                                                                    <button type="submit" class="btn btn-danger btn-sm text-white" onclick="return confirm('Are you sure?')">Delete</button>
+                                                                    <button type="submit" class="btn rounded-pill btn-danger btn-sm text-white" onclick="return confirm('Are you sure?')">Delete</button>
                                                                 </form>
                                     
                                                                 @if ($auction->status === 'closed' && !$auction->winner_id)
                                                                     <form action="{{ route('auctions.selectWinner', $auction) }}" method="POST" class="d-inline">
                                                                         @csrf
-                                                                        <button type="submit" class="btn btn-success btn-sm text-white">Select Winner</button>
+                                                                        <button type="submit" class="btn rounded-pill btn-success btn-sm text-white">Select Winner</button>
                                                                     </form>
                                                                 @endif
                                                             </div>
                                                         @else
                                                             @if (!$auction->winner_id && $auction->status === 'open')
-                                                                <a href="{{ route('bids.index', $auction) }}" class="btn btn-primary btn-sm text-white">Bid Now</a>
+                                                                <a href="{{ route('bids.index', $auction) }}" class="btn btn-primary rounded-pill btn-sm text-white">Bid Now</a>
                                                             @elseif ($auction->winner_id && $auction->winner_id == auth()->id())
                                                                 <span class="badge bg-success text-white">You won this auction!</span>
                                                                 
@@ -88,11 +89,11 @@
                                                                 @endphp
                                     
                                                                 @if(!$transaction)
-                                                                    <a href="{{ route('transactions.create') }}" class="btn btn-success btn-sm text-white">Bayar Sekarang</a>
+                                                                    <a href="{{ route('transactions.create') }}" class="btn rounded-pill btn-success btn-sm text-white">Bayar Sekarang</a>
                                                                 @else
                                                                 @if($transaction->status === 'confirmed')
                                                                     <span class="badge bg-info text-white">Payment Confirmed</span>
-                                                                    <a href="{{ route('feedbacks.create', $transaction->id) }}" class="btn btn-primary btn-sm text-white ms-2 feedback-button" data-transaction-id="{{ $transaction->id }}">Berikan Feedback</a>
+                                                                    <a href="{{ route('feedbacks.create', $transaction->id) }}" class="btn btn-primary rounded-pill btn-sm text-white ms-2 feedback-button" data-transaction-id="{{ $transaction->id }}">Berikan Feedback</a>
                                                                     @else
                                                                         <span class="badge bg-info text-white">Payment {{ ucfirst($transaction->status) }}</span>
                                                                     @endif
