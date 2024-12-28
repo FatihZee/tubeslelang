@@ -3,11 +3,24 @@
 @section('content')
 <div class="container mt-4">
     <h1>Transactions</h1>
-    <a href="{{ route('transactions.create') }}" class="btn btn-success mb-3">Create Transaction</a>
+    <a href="{{ route('transactions.create') }}" 
+   class="btn btn-success mb-3" 
+   style="transition: transform 0.3s ease, box-shadow 0.3s ease;"
+   onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0px 4px 10px rgba(0, 0, 0, 0.3)';"
+   onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+    Create Transaction
+</a>
 
-    @if (Auth::user()->role === 'admin')
-        <a href="{{ route('transactions.export-pdf') }}" class="btn btn-danger mb-3">Export to PDF</a>
-    @endif
+@if (Auth::user()->role === 'admin')
+    <a href="{{ route('transactions.export-pdf') }}" 
+       class="btn btn-danger mb-3" 
+       style="transition: transform 0.3s ease, box-shadow 0.3s ease;"
+       onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0px 4px 10px rgba(0, 0, 0, 0.3)';"
+       onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+        Export to PDF
+    </a>
+@endif
+
 
     <div class="mb-3">
         <label for="showEntries" class="form-label">Show Entries</label>
