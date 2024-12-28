@@ -21,20 +21,19 @@
     </a>
 @endif
 
-
-    <div class="mb-3">
-        <label for="showEntries" class="form-label">Show Entries</label>
-        <select id="showEntries" class="form-select" onchange="location = this.value;">
-            <option value="{{ route('transactions.index', ['perPage' => 10]) }}" {{ request('perPage') == 10 ? 'selected' : '' }}>10</option>
-            <option value="{{ route('transactions.index', ['perPage' => 25]) }}" {{ request('perPage') == 25 ? 'selected' : '' }}>25</option>
-            <option value="{{ route('transactions.index', ['perPage' => 50]) }}" {{ request('perPage') == 50 ? 'selected' : '' }}>50</option>
-            <option value="{{ route('transactions.index', ['perPage' => 100]) }}" {{ request('perPage') == 100 ? 'selected' : '' }}>100</option>
-        </select>
-    </div>
+<div class="mb-3" style="max-width: 200px;">
+    <label for="showEntries" class="form-label">Show Entries</label>
+    <select id="showEntries" class="form-select" onchange="location = this.value;">
+        <option value="{{ route('transactions.index', ['perPage' => 10]) }}" {{ request('perPage') == 10 ? 'selected' : '' }}>10</option>
+        <option value="{{ route('transactions.index', ['perPage' => 25]) }}" {{ request('perPage') == 25 ? 'selected' : '' }}>25</option>
+        <option value="{{ route('transactions.index', ['perPage' => 50]) }}" {{ request('perPage') == 50 ? 'selected' : '' }}>50</option>
+        <option value="{{ route('transactions.index', ['perPage' => 100]) }}" {{ request('perPage') == 100 ? 'selected' : '' }}>100</option>
+    </select>
+</div>
     
-    <form action="{{ route('transactions.index') }}" method="GET">
+    <form action="{{ route('transactions.index') }}" method="GET" class="mb-4">
         <div class="input-group">
-            <input type="text" name="search" class="form-control" placeholder="Search transactions" value="{{ request('search') }}">
+            <input type="text" name="search" class="form-control me-2" placeholder="Search transactions" value="{{ request('search') }}">
             <button type="submit" class="btn btn-primary">Search</button>
         </div>
     </form>
