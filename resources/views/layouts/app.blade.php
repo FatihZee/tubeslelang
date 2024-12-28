@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
         /* Navbar/Header Styling */
         .navbar {
@@ -24,6 +25,11 @@
         .navbar-brand i {
             margin-right: 8px;
             font-size: 1.3rem;
+        }
+
+        .navbar-brand img {
+            height: 40px;  /* atau sesuai kebutuhan */
+            object-fit: contain;  /* menjaga aspek ratio */
         }
 
         .nav-link.dropdown-toggle {
@@ -119,7 +125,11 @@
 <body style="font-family: 'Poppins', sans-serif;">
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('dashboard') }}"><i class="bi bi-shop"></i> LelangApp</a>
+            <a class="navbar-brand" href="{{ route('dashboard') }}">
+                <img src="{{ asset('logo.jpg') }}" alt="Logo" height="30">
+                <span class="ms-2" style="color: white;">Lelangan</span>
+                <span style="color: #4eefec; font-family: 'Bangers', cursive;">App</span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
