@@ -82,6 +82,9 @@ Route::prefix('feedbacks')->group(function () {
     Route::get('{id}', [FeedbackController::class, 'show'])->name('feedbacks.show');
 });
 
+Route::get('/transactions/export/csv', [TransactionController::class, 'exportCsv'])->name('transactions.export-csv');
+
+
 Route::get('dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('auth');

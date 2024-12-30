@@ -127,5 +127,36 @@ class TransactionController extends Controller
         return $pdf->download('transactions.pdf');
     }
 
-    
+    public function exportCsv()
+    {
+        $transactions = Transaction::with(['user', 'bid'])->get();
+
+        $headers = [
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=transactions.csv",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
+        ];
+
+        $callback = function() use ($transactions) {
+            $handle = fopen('php://output', 'w');
+            fputcsv($handle, ['ID', 'User Name', 'Bid ID', 'Nominal', 'Status', 'Created At']);
+
+            foreach ($transactions as $transaction) {
+                fputcsv($handle, [
+                    $transaction->id,
+                    $transaction->user->name,
+                    $transaction->bid->id,
+                    $transaction->nominal,
+                    $transaction->status,
+                    $transaction->created_at->format('Y-m-d H:i:s')
+                ]);
+            }
+
+            fclose($handle);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
 }

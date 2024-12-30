@@ -19,6 +19,9 @@
        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
         Export to PDF
     </a>
+    <a href="{{ route('transactions.export-csv') }}" class="btn btn-warning mb-3">
+        Export to CSV
+    </a>
 @endif
 
 <div class="mb-3" style="max-width: 200px;">
