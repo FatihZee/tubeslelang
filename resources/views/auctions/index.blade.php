@@ -16,7 +16,6 @@
                                     <div class="mb-3">
                                         <a href="{{ route('auctions.create') }}" class="btn btn-primary me-2 rounded-pill">Create Auction</a>
                                         <a href="{{ route('auctions.export-pdf') }}" class="btn btn-secondary rounded-pill">Export to PDF</a>
-
                                     </div>
                                 @endif
 
@@ -69,7 +68,7 @@
                                                                     @method('DELETE')
                                                                     <button type="submit" class="btn rounded-pill btn-danger btn-sm text-white" onclick="return confirm('Are you sure?')">Delete</button>
                                                                 </form>
-                                    
+                                 
                                                                 @if ($auction->status === 'closed' && !$auction->winner_id)
                                                                     <form action="{{ route('auctions.selectWinner', $auction) }}" method="POST" class="d-inline">
                                                                         @csrf
@@ -82,12 +81,12 @@
                                                                 <a href="{{ route('bids.index', $auction) }}" class="btn btn-primary rounded-pill btn-sm text-white">Bid Now</a>
                                                             @elseif ($auction->winner_id && $auction->winner_id == auth()->id())
                                                                 <span class="badge bg-success text-white">You won this auction!</span>
-                                                                
+                                                                 
                                                                 @php
                                                                     $winningBid = $auction->bids->where('user_id', auth()->id())->first();
                                                                     $transaction = $winningBid ? $winningBid->transaction : null;
                                                                 @endphp
-                                    
+                                 
                                                                 @if(!$transaction)
                                                                     <a href="{{ route('transactions.create') }}" class="btn rounded-pill btn-success btn-sm text-white">Bayar Sekarang</a>
                                                                 @else
@@ -152,11 +151,12 @@ table th {
 
 .table-row {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
 }
 
 .table-row:hover {
-    background: rgba(0, 221, 255, 0.434);
-    transition: all 0.3s ease;
+    background: rgba(0, 221, 255, 0.6);
+    transform: scale(1.02);
 }
 
 .btn-group {
@@ -181,6 +181,41 @@ table th {
 /* Memberikan border subtle */
 .table > :not(caption) > * > * {
     border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Animasi tombol */
+button:hover, 
+a.btn:hover {
+    transform: scale(0.95);
+    transition: transform 0.2s ease;
+}
+
+button, 
+a.btn {
+    transition: transform 0.2s ease;
+}
+
+/* Gambar thumbnail */
+img.img-thumbnail {
+    transition: transform 0.3s ease;
+}
+
+img.img-thumbnail:hover {
+    transform: scale(1.1);
+}
+
+/* Fade-in untuk card */
+.card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>
 
