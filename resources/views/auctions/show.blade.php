@@ -35,12 +35,21 @@
                                     </div>
                                 </div>
 
-                                <!-- Display Product Image -->
+                                <!-- Modified Image Display Section -->
                                 <div class="text-center mb-4">
                                     <img src="{{ asset('storage/' . ($auction->product->image ?? 'default.jpg')) }}" 
-                                         alt="{{ $auction->product->name }}" 
-                                         class="img-thumbnail shadow" 
-                                         style="width: 300px; height: auto; background: rgba(255, 255, 255, 0.1);">
+                                        alt="{{ $auction->product->name }}" 
+                                        class="img-thumbnail shadow zoom-image" 
+                                        style="width: 300px; height: auto; background: rgba(255, 255, 255, 0.1);"
+                                        onclick="openImageModal(this.src)">
+                                </div>
+
+                                <!-- Add Modal -->
+                                <div id="imageModal" class="image-modal">
+                                    <div class="modal-content">
+                                        <span class="close-modal">&times;</span>
+                                        <img id="modalImage" src="" alt="Modal Image">
+                                    </div>
                                 </div>
 
                                 <!-- Action Buttons -->
@@ -144,5 +153,71 @@ body,
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+.zoom-image {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.zoom-image:hover {
+    transform: scale(1.1);
+}
+
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+}
+
+.modal-content {
+    position: relative;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    max-width: 90%;
+}
+
+.modal-content img {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    animation: zoomIn 0.3s ease;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.close-modal:hover {
+    color: #ccc;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
 </style>
+
 @endsection
