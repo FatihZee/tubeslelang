@@ -1,7 +1,7 @@
 @extends(Auth::user()->role === 'admin' ? 'layouts.app' : 'layouts.member')
 
 @section('content')
-<div class="container mt-4">
+<div class="container mt-4 fade-in">  <!-- Menambahkan class 'fade-in' -->
     <h1>Transactions</h1>
     <a href="{{ route('transactions.create') }}" 
    class="btn btn-success mb-3" 
@@ -86,4 +86,19 @@
 
     {{ $transactions->appends(request()->input())->links() }}
 </div>
+
+<style>
+    .fade-in {
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
 @endsection
