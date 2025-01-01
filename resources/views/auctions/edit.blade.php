@@ -2,11 +2,11 @@
 
 @section('content')
 <section class="intro">
-    <div class="bg-image h-100" style="background-image: url(https://mdbootstrap.com/img/Photos/new-templates/glassmorphism-article/img7.jpg);">
+    <div class="bg-image h-100" >
         <div class="mask d-flex align-items-center h-100">
-            <div class="container">
+        <div class="container-fluid"> 
                 <div class="row justify-content-center">
-                    <div class="col-12 col-md-8">
+                <div class="col-10 col-md-14">
                         <div class="card mask-custom">
                             <div class="card-body">
                                 <h1 class="text-white mb-4">Edit Auction</h1>
@@ -81,6 +81,7 @@ body,
     border: 2px solid rgba(255, 255, 255, 0.05);
     background-clip: padding-box;
     box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+    background-image: url('{{ asset("bg.jpg") }}');
 }
 
 /* Form Styling */
