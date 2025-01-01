@@ -43,6 +43,8 @@ Route::get('/auctions', [AuctionController::class, 'index'])->name('auctions.ind
 Route::get('/auctions/create', [AuctionController::class, 'create'])->name('auctions.create');
 Route::post('/auctions', [AuctionController::class, 'store'])->name('auctions.store');
 Route::get('/auctions/export-pdf', [AuctionController::class, 'exportPdf'])->name('auctions.export-pdf');
+Route::get('/auctions/export-csv', [AuctionController::class, 'exportCsv'])->name('auctions.export-csv');
+Route::get('/auctions/export-json', [AuctionController::class, 'exportJson'])->name('auctions.export-json');
 Route::get('/auctions/{auction}', [AuctionController::class, 'show'])->name('auctions.show');
 Route::get('/auctions/{auction}/edit', [AuctionController::class, 'edit'])->name('auctions.edit');
 Route::put('/auctions/{auction}', [AuctionController::class, 'update'])->name('auctions.update');

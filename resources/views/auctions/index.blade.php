@@ -14,7 +14,17 @@
                             @if (auth()->user()->role === 'admin')
                                 <div class="mb-3">
                                     <a href="{{ route('auctions.create') }}" class="btn btn-primary rounded-pill">Create Auction</a>
-                                    <a href="{{ route('auctions.export-pdf') }}" class="btn btn-secondary rounded-pill">Export to PDF</a>
+                                    <!-- Dropdown Export -->
+                                    <div class="dropdown d-inline">
+                                        <button class="btn btn-secondary dropdown-toggle rounded-pill" type="button" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Export File
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="exportDropdown">
+                                            <li><a class="dropdown-item" href="{{ route('auctions.export-pdf') }}">Export to PDF</a></li>
+                                            <li><a class="dropdown-item" href="{{ route('auctions.export-csv') }}">Export to CSV</a></li>
+                                            <li><a class="dropdown-item" href="{{ route('auctions.export-json') }}">Export to JSON</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             @endif
 

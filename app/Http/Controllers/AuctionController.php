@@ -102,4 +102,33 @@ class AuctionController extends Controller
         $pdf->loadView('auctions.export-pdf', compact('auctions'));
         return $pdf->download('auctions-list.pdf');
     }
+
+    public function exportCsv()
+    {
+        $auctions = Auction::with('product', 'admin', 'winner')->get();
+        $csvData = "ID,Product Name,Admin Name,Status,Winner Name\n";
+
+        foreach ($auctions as $auction) {
+            $csvData .= $auction->id . ',' . 
+                        ($auction->product->name ?? 'N/A') . ',' . 
+                        ($auction->admin->name ?? 'N/A') . ',' . 
+                        ucfirst($auction->status) . ',' . 
+                        ($auction->winner->name ?? 'N/A') . "\n";
+        }
+
+        $fileName = 'auctions-list.csv';
+        return response($csvData)
+            ->header('Content-Type', 'text/csv')
+            ->header('Content-Disposition', "attachment; filename=$fileName");
+    }
+
+    public function exportJson()
+    {
+        $auctions = Auction::with('product', 'admin', 'winner')->get();
+        $fileName = 'auctions-list.json';
+        return response()->json($auctions)
+            ->header('Content-Type', 'application/json')
+            ->header('Content-Disposition', "attachment; filename=$fileName");
+    }
+
 }
