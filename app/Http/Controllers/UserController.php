@@ -104,4 +104,30 @@ class UserController extends Controller
 
         return $pdf->download('users-list.pdf');
     }
+    public function exportCsv()
+{
+    $users = User::all(); // Mengambil semua data users
+
+    $filename = "users.csv";
+    $handle = fopen($filename, 'w+'); // Membuka atau membuat file CSV
+
+    // Tambahkan header kolom
+    fputcsv($handle, ['Name', 'Email', 'Username', 'Role']);
+
+    // Isi data pengguna ke dalam file CSV
+    foreach ($users as $user) {
+        fputcsv($handle, [
+            $user->name,
+            $user->email,
+            $user->username,
+            $user->role,
+        ]);
+    }
+
+    fclose($handle); // Tutup file CSV setelah selesai
+
+    // Download file CSV dan hapus setelah selesai di-download
+    return response()->download($filename)->deleteFileAfterSend(true);
+}
+
 }

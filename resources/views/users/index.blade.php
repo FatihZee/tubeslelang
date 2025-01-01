@@ -11,6 +11,7 @@
 
                 <!-- Button to Export PDF -->
                 @if (Auth::user()->role === 'admin')
+                    <a href="{{ route('users.exportCsv') }}" class="btn btn-success rounded-pill mb-3">Export to CSV</a>
                     <a href="{{ route('users.exportPdf') }}" class="btn btn-secondary rounded-pill mb-3">Export to PDF</a>
                 @endif
 

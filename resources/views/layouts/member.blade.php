@@ -125,7 +125,7 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            height: 100vh;
+            height: auto;
             padding: 40px;
         }
 
