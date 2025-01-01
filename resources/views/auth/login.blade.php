@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container d-flex justify-content-center align-items-center vh-100" style="font-family: 'Poppins', sans-serif;">
+   
         <div class="card shadow-sm p-4" style="width: 100%; max-width: 400px;">
             <h1 class="text-center mb-4">Login</h1>
 
