@@ -17,11 +17,13 @@
 
         /* Navbar/Header Styling */
         .navbar {
-            background: linear-gradient(135deg, #6f42c1 0%, #8c68cd 100%) !important;
+            background: linear-gradient(135deg, #6f42c1 0%,rgb(192, 171, 231) 100%) !important;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 0.2rem 1rem;
         }
-
+        .navbar-nav {
+            color: #f3f1f8 !important;
+        }
         .navbar-brand {
             font-weight: 600;
             letter-spacing: 1px;
@@ -37,12 +39,9 @@
             height: 40px;
             object-fit: contain;
         }
-
-        .nav-link.dropdown-toggle {
-            color: #fff !important;
-        }
-
+       
         .navbar .nav-link {
+            background-color:rgb(231, 219, 255);
             padding: 0.5rem 1rem;
             border-radius: 6px;
             transition: all 0.3s ease;
@@ -159,14 +158,14 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle"></i> Profile
+                        <a class="nav-link dropdown-toggle text-dark" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>Profile
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="{{ route('users.show', \Illuminate\Support\Facades\Auth::user()->id_user) }}"><i class="bi bi-person"></i> My Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <a class="dropdown-item text-danger" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <a class="dropdown-item text-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     <i class="bi bi-box-arrow-right"></i> Logout
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

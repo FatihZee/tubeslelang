@@ -11,11 +11,13 @@
     <style>
         /* Navbar/Header Styling */
         .navbar {
-            background: linear-gradient(135deg, #6f42c1 0%, #8c68cd 100%) !important;
+            background: linear-gradient(135deg, #6f42c1 0%,rgb(192, 171, 231) 100%) !important;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 0.2rem 1rem;  /* Dikurangi dari 0.8rem menjadi 0.5rem */
+            padding: 0.2rem 1rem;
         }
-
+        .navbar-nav {
+            color: #f3f1f8 !important;
+        }
         .navbar-brand {
             font-weight: 600;
             letter-spacing: 1px;
@@ -27,11 +29,13 @@
             font-size: 1.3rem;
         }
 
-        .nav-link.dropdown-toggle {
-            color: #fff !important;
+        .navbar-brand img {
+            height: 40px;
+            object-fit: contain;
         }
-
+       
         .navbar .nav-link {
+            background-color:rgb(231, 219, 255);
             padding: 0.5rem 1rem;
             border-radius: 6px;
             transition: all 0.3s ease;
@@ -105,7 +109,7 @@
             padding: 0.5rem;
         }
 
-        /* Dropdown Animation */
+        /* Additional animations for dropdown */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -113,6 +117,20 @@
 
         .dropdown-menu.show {
             animation: fadeIn 0.2s ease-out;
+        }
+
+        /* Content Styling */
+        .content-wrapper {
+            background-image: url('{{ asset('login.png') }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            padding: 40px;
+        }
+
+        .container {
+            margin: 0 auto;
         }
     </style>
     @stack('styles')
@@ -170,7 +188,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10 content-wrapper">
                 <div class="container mt-4">
                     @yield('content')
                 </div>
