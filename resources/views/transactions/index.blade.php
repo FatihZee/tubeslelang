@@ -1,6 +1,7 @@
 @extends(Auth::user()->role === 'admin' ? 'layouts.app' : 'layouts.member')
 
 @section('content')
+<div class="container mt-4 fade-in">  <!--  class 'fade-in' -->
     <section class="intro">
         <div class="mask mask-custom d-flex align-items-center h-100">
             <div class="container">
