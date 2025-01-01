@@ -46,7 +46,7 @@
                             <label for="password" class="form-label text-white">Password <small>(Leave empty if not changing)</small></label>
                             <div class="input-group">
                                 <input type="password" name="password" id="password" class="form-control bg-light bg-opacity-25 text-white border-light" aria-describedby="password-eye">
-                                <button type="button" class="btn btn-light bg-opacity-25 border-light" id="password-eye" onclick="togglePasswordVisibility()">
+                                <button type="button" class="btn btn-dark bg-opacity-10 border-light" id="password-eye" onclick="togglePasswordVisibility()">
                                     <i class="fa fa-eye text-white" id="eye-icon"></i>
                                 </button>
                             </div>
