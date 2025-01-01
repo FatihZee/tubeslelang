@@ -9,6 +9,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
+        /* General Layout Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+        }
+
         /* Navbar/Header Styling */
         .navbar {
             background: linear-gradient(135deg, #6f42c1 0%, #8c68cd 100%) !important;
@@ -28,12 +34,12 @@
         }
 
         .navbar-brand img {
-            height: 40px;  /* atau sesuai kebutuhan */
-            object-fit: contain;  /* menjaga aspek ratio */
+            height: 40px;
+            object-fit: contain;
         }
 
         .nav-link.dropdown-toggle {
-            color: #fff !important; /* Warna teks putih */
+            color: #fff !important;
         }
 
         .navbar .nav-link {
@@ -110,7 +116,7 @@
             padding: 0.5rem;
         }
 
-        /* Tambahan animasi untuk dropdown */
+        /* Additional animations for dropdown */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -119,10 +125,24 @@
         .dropdown-menu.show {
             animation: fadeIn 0.2s ease-out;
         }
+
+        /* Content Styling */
+        .content-wrapper {
+            background-image: url('{{ asset('login.png') }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            padding: 40px;
+        }
+
+        .container {
+            margin: 0 auto;
+        }
     </style>
     @stack('styles')
 </head>
-<body style="font-family: 'Poppins', sans-serif;">
+<body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('dashboard') }}">
@@ -143,7 +163,7 @@
                             <i class="bi bi-person-circle"></i> Profile
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{{ route('users.show', Auth::user()->id_user) }}"><i class="bi bi-person"></i> My Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ route('users.show', \Illuminate\Support\Facades\Auth::user()->id_user) }}"><i class="bi bi-person"></i> My Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <a class="dropdown-item text-danger" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -160,8 +180,9 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
-        <div class="row">
+    <div class="container-fluid" style="padding: 0;">
+        <div class="row" style="height: 100vh;">
+            <!-- Sidebar Section -->
             <div class="col-md-2 bg-light vh-100">
                 <div class="d-flex flex-column p-2" style="height: 100%;">
                     <h5 class="text-center py-3">Admin Menu</h5>
@@ -187,7 +208,9 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-9">
+
+            <!-- Content Section -->
+            <div class="col-md-10 content-wrapper">
                 <div class="container mt-4">
                     @yield('content')
                 </div>
@@ -197,7 +220,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Add active class to current nav item
         document.addEventListener('DOMContentLoaded', function() {
             const currentLocation = window.location.pathname;
             const navLinks = document.querySelectorAll('.nav-link');
