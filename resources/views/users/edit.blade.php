@@ -24,24 +24,29 @@
                         @csrf
                         @method('PUT')
 
+
+                    <!-- Name Field -->
                         <div class="mb-4">
                             <label for="name" class="form-label text-white">Name</label>
                             <input type="text" name="name" id="name" class="form-control bg-light bg-opacity-25 text-white border-light" 
                                    value="{{ old('name', $user->name) }}" required>
                         </div>
 
+                    <!-- Email Field -->
                         <div class="mb-4">
                             <label for="email" class="form-label text-white">Email</label>
                             <input type="email" name="email" id="email" class="form-control bg-light bg-opacity-25 text-white border-light" 
                                    value="{{ old('email', $user->email) }}" required>
                         </div>
 
+                    <!-- Username Field -->
                         <div class="mb-4">
                             <label for="username" class="form-label text-white">Username</label>
                             <input type="text" name="username" id="username" class="form-control bg-light bg-opacity-25 text-white border-light" 
                                    value="{{ old('username', $user->username) }}" required>
                         </div>
 
+                    <!-- Password Field -->
                         <div class="mb-4">
                             <label for="password" class="form-label text-white">Password <small>(Leave empty if not changing)</small></label>
                             <div class="input-group">
@@ -52,6 +57,7 @@
                             </div>
                         </div>
 
+                    <!-- Button Back-->
                         <div class="text-end mt-4">
                             <a href="javascript:history.back()" class="btn rounded-pill btn-light btn-sm me-2 px-4">Back</a>
                             <button type="submit" class="btn btn-primary rounded-pill btn-sm px-4">Update</button>
@@ -63,6 +69,7 @@
     </div>
 </div>
 
+<!-- Script -->
 <script>
     function togglePasswordVisibility() {
         const passwordInput = document.getElementById('password');
@@ -78,14 +85,13 @@
     }
 </script>
 
+<!-- Style -->
 <style>
-/* Container Styling */
 html,
 body {
     height: 100%;
 }
 
-/* Card Styling */
 .mask-custom {
     background: rgba(24, 24, 16, .2);
     border-radius: 2em;
@@ -100,7 +106,6 @@ body {
     padding: 2.5rem;
 }
 
-/* Form Styling */
 .form-control {
     background-color: rgba(255, 255, 255, 0.1) !important;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -120,7 +125,6 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Button Styling */
 .btn {
     padding: 0.5rem 1.5rem;
     font-weight: 500;

@@ -68,10 +68,9 @@
                                             <option value="admin">Admin</option>
                                             <option value="member">Member</option>
                                         </select>
-
                                     </div>
 
-                                    <!-- Buttons -->
+                                    <!-- Buttons Back -->
                                     <div class="text-end mt-4">
                                         <a href="javascript:history.back()" 
                                            class="btn rounded-pill btn-light btn-sm me-2 px-4">Back</a>
@@ -88,6 +87,7 @@
     </div>
 </section>
 
+<!-- Style -->
 <style>
 html,
 body,

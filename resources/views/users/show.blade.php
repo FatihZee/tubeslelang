@@ -11,6 +11,7 @@
                             <div class="card-body">
                                 <h1 class="text-white mb-4">User Details</h1>
 
+                                <!-- User Details -->
                                 <div class="details-container text-white mb-4">
                                     <div class="row mb-2">
                                         <div class="col-md-4"><strong>Name:</strong></div>
@@ -26,6 +27,7 @@
                                     </div>
                                 </div>
 
+                               <!-- Button edit -->
                                 <div class="text-end mt-4">
                                     <a href="{{ route('users.edit', $user->id_user) }}" 
                                        class="btn rounded-pill btn-light btn-sm px-4">Edit Profile</a>
@@ -41,6 +43,7 @@
     </div>
 </section>
 
+<!-- Styles -->
 <style>
 html,
 body,

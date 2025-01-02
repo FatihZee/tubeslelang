@@ -12,12 +12,12 @@
         /* General Layout Styles */
         body {
             font-family: 'Poppins', sans-serif;
-            overflow-x: hidden; /* Hide horizontal scrollbar */
+            overflow-x: hidden; 
         }
 
         /* Navbar/Header Styling */
         .navbar {
-            background: linear-gradient(135deg, #6f42c1 0%,rgb(192, 171, 231) 100%) !important;
+            background: linear-gradient(135deg, #6f42c1 0%, rgb(192, 171, 231) 100%) !important;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 0.2rem 1rem;
         }
@@ -30,47 +30,18 @@
             font-size: 1.25rem;
         }
 
-        .navbar-brand i {
-            margin-right: 8px;
-            font-size: 1.3rem;
-        }
-
         .navbar-brand img {
             height: 40px;
             object-fit: contain;
         }
-       
         .navbar .nav-link {
-            background-color:rgb(231, 219, 255);
+            background-color: rgb(231, 219, 255);
             padding: 0.5rem 1rem;
             border-radius: 6px;
             transition: all 0.3s ease;
         }
-
         .navbar .nav-link:hover {
             background: rgba(255, 255, 255, 0.1);
-        }
-
-        .navbar .dropdown-menu {
-            border: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            margin-top: 8px;
-        }
-
-        .navbar .dropdown-item {
-            padding: 0.7rem 1.2rem;
-            transition: all 0.3s ease;
-        }
-
-        .navbar .dropdown-item:hover {
-            background-color: #f3f1f8;
-            color: #6f42c1;
-        }
-
-        .navbar .dropdown-item i {
-            margin-right: 8px;
-            color: #6f42c1;
         }
 
         /* Sidebar Styling */
@@ -79,7 +50,6 @@
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
             border-right: 1px solid rgba(0, 0, 0, 0.05);
         }
-
         .nav-item .nav-link {
             color: #666 !important;
             padding: 0.8rem 1rem;
@@ -87,56 +57,25 @@
             transition: all 0.3s ease;
             margin-bottom: 0.5rem;
         }
-
         .nav-item .nav-link:hover {
             background-color: #f3f1f8;
             color: #6f42c1 !important;
             transform: translateX(5px);
         }
-
         .nav-item .nav-link.active {
             background-color: #f3f1f8;
             color: #6f42c1 !important;
             font-weight: 500;
         }
 
-        .nav-item .nav-link i {
-            margin-right: 10px;
-            font-size: 1.1rem;
-        }
-
-        .text-center.py-3 {
-            color: #6f42c1;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .nav.flex-column {
-            padding: 0.5rem;
-        }
-
-        /* Additional animations for dropdown */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .dropdown-menu.show {
-            animation: fadeIn 0.2s ease-out;
-        }
-
         /* Content Styling */
         .content-wrapper {
-            background-image: url('{{ asset('login.png') }}');
+            background-image: url("{{ asset('login.png') }}");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             height: auto;
             padding: 40px;
-        }
-
-        .container {
-            margin: 0 auto;
         }
     </style>
     @stack('styles')
@@ -153,13 +92,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"></li>
-                </ul>
+                <ul class="navbar-nav me-auto"></ul>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-dark" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle"></i>Profile
+                            <i class="bi bi-person-circle"></i> {{ \Illuminate\Support\Facades\Auth::user()->name }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="{{ route('users.show', \Illuminate\Support\Facades\Auth::user()->id_user) }}"><i class="bi bi-person"></i> My Profile</a></li>
