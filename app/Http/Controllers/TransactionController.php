@@ -42,18 +42,20 @@ class TransactionController extends Controller
         $userId = auth()->user()->id_user;
 
         $bids = Bid::whereHas('auction', function ($query) {
-                    $query->where('status', 'completed');
-                })
-                ->where('user_id', $userId)
-                ->whereDoesntHave('transaction', function ($query) {
-                    $query->where('status', '!=', 'pending');
-                })
-                ->with(['auction.product'])
-                ->orderBy('bid_price', 'desc')
-                ->get();
+                        $query->where('status', 'completed');
+                    })
+                    ->where('user_id', $userId)
+                    ->whereDoesntHave('transaction', function ($query) {
+                        $query->where('status', '!=', 'pending');
+                    })
+                    ->with(['auction.product'])
+                    ->latest('updated_at') // Menampilkan bid terbaru
+                    ->limit(1) // Hanya ambil satu bid terakhir
+                    ->get();
 
         return view('transactions.create', compact('bids'));
     }
+
 
     public function store(Request $request)
     {
