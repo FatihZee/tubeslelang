@@ -1,7 +1,7 @@
 @extends(Auth::user()->role === 'admin' ? 'layouts.app' : 'layouts.member')
 
 @section('content')
-    <section class="intro">
+    <section class="intro fade-in">
         <div class="mask d-flex align-items-center h-100">
             <div class="container">
                 <div class="row justify-content-center">
@@ -108,6 +108,19 @@
 
         button:hover, a.btn:hover {
             transform: scale(0.95);
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 @endsection

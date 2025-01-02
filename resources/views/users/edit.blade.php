@@ -83,8 +83,6 @@
 html,
 body {
     height: 100%;
-    background: rgba(24, 24, 16, 0.9) url('{{ asset("bg.jpg") }}') no-repeat center center fixed;
-    background-size: cover;
 }
 
 /* Card Styling */
@@ -95,6 +93,7 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.05);
     background-clip: padding-box;
     box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+    background-image: url('{{ asset("bg.jpg") }}');
 }
 
 .card-body {
