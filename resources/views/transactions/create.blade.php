@@ -32,6 +32,8 @@
             <label for="image" class="form-label">Proof of Payment</label>
             <input type="file" name="image" id="image" class="form-control" required>
         </div>
+   
+        @if (auth()->user()->role === 'admin')
         <div class="mb-3">
             <label for="status" class="form-label">Status</label>
             <select name="status" id="status" class="form-control">
@@ -40,6 +42,9 @@
                 <option value="rejected">Rejected</option>
             </select>
         </div>
+        @else
+        <input type="hidden" name="status" value="pending">
+        @endif
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
