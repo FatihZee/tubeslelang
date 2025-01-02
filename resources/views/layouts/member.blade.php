@@ -9,7 +9,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
-        /* Navbar/Header Styling */
+        /* General Layout Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden; 
+        }
+
+           /* Navbar/Header Styling */
         .navbar {
             background: linear-gradient(135deg, #6f42c1 0%, rgb(192, 171, 231) 100%) !important;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -59,15 +65,6 @@
             height: auto;
             padding: 40px;
         }
-        .content-wrapper {
-            background-image: url('{{ asset('login.png') }}');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            height: auto;
-            padding: 40px;
-        }
-        
     </style>
     @stack('styles')
 </head>
@@ -86,8 +83,8 @@
                 <ul class="navbar-nav me-auto"></ul>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle"></i> {{ \Illuminate\Support\Facades\Auth::user()->nama_user }}
+                        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i> {{ \Illuminate\Support\Facades\Auth::user()->name }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="{{ route('users.show', \Illuminate\Support\Facades\Auth::user()->id_user) }}"><i class="bi bi-person"></i> My Profile</a></li>

@@ -15,7 +15,7 @@
             overflow-x: hidden; 
         }
 
-        /* Navbar/Header Styling */
+           /* Navbar/Header Styling */
         .navbar {
             background: linear-gradient(135deg, #6f42c1 0%, rgb(192, 171, 231) 100%) !important;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -34,14 +34,19 @@
             height: 40px;
             object-fit: contain;
         }
+
         .navbar .nav-link {
             background-color: rgb(231, 219, 255);
             padding: 0.5rem 1rem;
             border-radius: 6px;
             transition: all 0.3s ease;
         }
-        .navbar .nav-link:hover {
-            background: rgba(255, 255, 255, 0.1);
+
+        .navbar .dropdown-menu {
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 8px;
         }
 
         /* Sidebar Styling */
@@ -50,27 +55,10 @@
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
             border-right: 1px solid rgba(0, 0, 0, 0.05);
         }
-        .nav-item .nav-link {
-            color: #666 !important;
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            margin-bottom: 0.5rem;
-        }
-        .nav-item .nav-link:hover {
-            background-color: #f3f1f8;
-            color: #6f42c1 !important;
-            transform: translateX(5px);
-        }
-        .nav-item .nav-link.active {
-            background-color: #f3f1f8;
-            color: #6f42c1 !important;
-            font-weight: 500;
-        }
 
         /* Content Styling */
         .content-wrapper {
-            background-image: url("{{ asset('login.png') }}");
+            background-image: url('{{ asset('login.png') }}');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
