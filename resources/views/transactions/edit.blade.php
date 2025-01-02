@@ -22,7 +22,7 @@
                                     </div>
                                 @endif
 
-                                <form action="{{ route('transactions.update', $transaction->id) }}" method="POST">
+                                <form action="{{ route('transactions.update', $transaction->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
 
@@ -66,9 +66,10 @@
                                     <!-- Image Input -->
                                     <div class="mb-4">
                                         <label for="image" class="form-label text-white">Image</label>
-                                        <input type="text" name="image" id="image" 
-                                               value="{{ old('image', $transaction->image) }}" 
-                                               class="form-control bg-light bg-opacity-25 text-white border-light">
+                                        <input type="file" name="image" id="image" class="form-control bg-light bg-opacity-25 text-white border-light">
+                                        @if ($transaction->image)
+                                            <img src="{{ asset('storage/' . $transaction->image) }}" alt="Transaction Image" class="img-thumbnail mt-2" style="width: 200px;">
+                                        @endif
                                     </div>
 
                                     <!-- Status Selection -->
