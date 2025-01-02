@@ -39,7 +39,9 @@
                                                     <td>{{ $feedback->feedback }}</td>
                                                     <td>
                                                         <a href="{{ route('feedbacks.show', $feedback->id) }}" class="btn btn-info btn-sm rounded-pill">View</a>
-                                                        <a href="{{ route('feedbacks.edit', $feedback->id) }}" class="btn btn-warning btn-sm rounded-pill">Edit</a>
+                                                        @if(Auth::user()->role !== 'admin')
+                                                            <a href="{{ route('feedbacks.edit', $feedback->id) }}" class="btn btn-warning btn-sm rounded-pill">Edit</a>
+                                                        @endif
                                                         <form action="{{ route('feedbacks.destroy', $feedback->id) }}" method="POST" style="display:inline;">
                                                             @csrf
                                                             @method('DELETE')
@@ -48,7 +50,7 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
-                                        </tbody>
+                                        </tbody>                                        
                                     </table>
                                 </div>
                             </div>
