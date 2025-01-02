@@ -57,26 +57,24 @@ class TransactionController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'user_id' => 'required|exists:users,id_user',
             'bid_id' => 'required|exists:bids,id',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|in:pending,confirmed,rejected',
+            'nominal' => 'required|numeric',
+            'image' => 'required|image|max:2048',
         ]);
 
-        $bid = Bid::findOrFail($request->bid_id);
+        $transaction = new Transaction();
+        $transaction->user_id = $request->user_id;
+        $transaction->bid_id = $request->bid_id;
+        $transaction->nominal = $request->nominal;
+        $transaction->status = 'pending'; // Set default status to pending
+        if ($request->hasFile('image')) {
+            $transaction->image = $request->file('image')->store('transactions', 'public');
+        }
+        $transaction->save();
 
-        $imagePath = $request->file('image')->store('payments', 'public');
-
-        Transaction::create([
-            'user_id' => $validated['user_id'],
-            'bid_id' => $validated['bid_id'],
-            'nominal' => $bid->bid_price,
-            'image' => $imagePath,
-            'status' => $validated['status'],
-        ]);
-
-        return redirect()->route('auctions.index')->with('success', 'Transaction created successfully.');
+        return redirect()->route('transactions.index')->with('success', 'Transaction created successfully.');
     }
 
     public function show($id)
