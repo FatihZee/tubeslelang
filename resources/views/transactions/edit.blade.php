@@ -76,7 +76,7 @@
                                     <div class="mb-4">
                                         <label for="status" class="form-label text-white">Status</label>
                                         <select name="status" id="status" 
-                                                class="form-select bg-light bg-opacity-25 text-white border-light">
+                                                class="form-select bg-light bg-opacity-25 text-white border-light custom-dropdown">
                                             <option value="pending" {{ $transaction->status == 'pending' ? 'selected' : '' }}>Pending</option>
                                             <option value="confirmed" {{ $transaction->status == 'confirmed' ? 'selected' : '' }}>Confirmed</option>
                                             <option value="rejected" {{ $transaction->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
@@ -130,6 +130,12 @@ body,
     box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.1);
 }
 
+.custom-dropdown option {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    backdrop-filter: blur(5px);
+}
+
 .btn {
     padding: 0.5rem 1.5rem;
     font-weight: 500;
@@ -141,5 +147,7 @@ body,
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 </style>
+
 @endsection
